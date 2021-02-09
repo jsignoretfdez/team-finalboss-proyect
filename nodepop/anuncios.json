@@ -1,0 +1,30 @@
+[
+    {
+      "nombre": "Nintendo Switch",
+      "venta": true,
+      "precio": 250,
+      "foto": "nintendo.jpeg",
+      "tags": ["gaming", "work"]
+    },
+    {
+      "nombre": "Hoverboard",
+      "venta": false,
+      "precio": 50,
+      "foto": "hoverboard.jpeg",
+      "tags": ["lifestyle", "funny"]
+    },
+    {
+      "nombre": "Go Pro 5",
+      "venta": true,
+      "precio": 95,
+      "foto": "gopro.jpg",
+      "tags": ["lifestyle", "sports"]
+    },
+    {
+      "nombre": "Portatil Xiaomi",
+      "venta": true,
+      "precio": 180,
+      "foto": "portatil-xiaomi.jpg",
+      "tags": ["lifestyle", "work"]
+    }
+  ]

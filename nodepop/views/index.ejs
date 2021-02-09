@@ -1,0 +1,79 @@
+ <%include header.ejs%>
+
+ <!-- Services-->
+ <section class="page-section" id="services">
+  <div class="container">
+    <h2> <%= __('Welcome To') %> <%= title %> </h2>
+
+    <p><%=__('Nodepop es una Api que nos sirve un listado de anuncios de segunda manos para la compra o la venta de artículos.')%></p>
+    <p><%=__('Esta montado sobre una Base de datos de MongoDB. La app nos permite crear anuncios, borrarlos y filtrarlos por varios criterios introducidos en la url.')%></p>
+
+      <h2><%= __('Clonar repositorio')%></h2>
+      <code>git clone https://github.com/jsignoretfdez/Practica-node-avanzado.git</code>
+      <hr>
+
+      <h2> <%=__('How to Install')%></h2>
+      <code>npm install</code>
+      <hr>
+
+      <h2><%= __('File configuration .env')%></h2>
+      <p><code>cp .env.example .env</code></p>
+      <p><%= __('Once the content has been copied and the .env file has been created, we put the name of the Database that we are going to create & secret private.')%></p>
+      <hr>
+
+      <h2><%= __('Initialize test database')%></h2>
+      <p><code>npm run initDB</code></p>
+      <p><%= __('This command will allow us to create a test database with the collections created as an example.')%></p>
+      <p><span class="alert"><%= __('Attention this script deletes the database should only be used in the first deployment of the application.')%></span></p>
+      <hr>
+
+      <h2><%= __('Initialize App')%></h2>
+      <p><code>npm run start</code></p>
+      <p><%= __('This script first initializes the microservice and then the app')%></p>
+      <hr>
+
+      <h2><%= __('API Methods')%></h2>
+      <p><span class="alert">POST /api/authenticate</span></p>
+      <p><%= __('From Postman we make an http request and in the body we collect the email and the pass. If we put a valid email and pass, it will return a token.')%></p>
+
+      <p><span class="alert">GET /api/anuncios</span></p>
+      <p><%= __('It requires a valid Token.We have to put the Token in headers {Authorize: Token valid when logging in}. If it is correct, the token will respond with a JSON of the ads')%></p>
+      <p><code>{
+        "tags": [
+        "work"
+        ],
+        "_id": "5fa80b27fcbeaf5fc32695f8",
+        "nombre": "Otro",
+        "precio": 12,
+        "venta": true,
+        "foto": "1604848423668_detalle3.png",
+        "thumbnail": "images/thumbnail/Thumb_1604848423668_detalle3.png",
+        "__v": 0
+        }</code></p>
+
+    <p><span class="alert">POST /api/upload</span></p>
+    <p><%= __('It requires a valid Token.We have to put the Token in headers {Authorize: Token valid when logging in}.')%></p>
+    <p><%= __('In the body we must put the following (The image must be selected as a file).')%></p>
+    <img src="https://drive.google.com/uc?export=view&id=1cMNZHU_k5RlaT3djMPWgW4_EOl38W3MR" alt="" class="img-upload">
+    <br>
+    <p><%= __('If it is correct, the token will respond with a JSON of the ads')%></p>
+    <p><code>{
+        "tags": [
+        "work, funny"
+        ],
+        "_id": "5fa812598b43cd68cb51c16b",
+        "nombre": "Ps5",
+        "precio": 400,
+        "venta": true,
+        "foto": "1604850265905_detalle3.png",
+        "thumbnail": "images/thumbnail/Thumb_1604850265905_detalle3.png",
+        "__v": 0
+        }</code></p>
+    <hr>
+    <a href="https://github.com/jsignoretfdez/Practica-node-avanzado/blob/master/nodepop/README.md"><%= __('More information click here')%></a>
+
+
+  </div>
+ </section>
+
+ <%include footer.ejs%>

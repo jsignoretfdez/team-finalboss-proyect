@@ -1,0 +1,52 @@
+<%include header.ejs%>
+<form action="/api/anuncios/upload" method="post" enctype="multipart/form-data">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" id="name" name="nombre" placeholder="Nombre Producto">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="price">Precio</label>
+            <input type="text" class="form-control" id="price" name="precio" placeholder="precio">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="sale">Vender o Buscar</label>
+        <select name="venta">
+            <option value="venta">Venta</option>
+            <option value="busco">Busco</option>
+        </select>
+    </div>
+    <h6><label for="">Tags</label></h6>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="work" name="tags">
+        <label class="form-check-label" for="inlineCheckbox1">Work</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="lifestyle" name="tags">
+        <label class="form-check-label" for="inlineCheckbox2">Lifestyle</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="funny" name="tags">
+        <label class="form-check-label" for="inlineCheckbox3">Funny</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="gaming" name="tags">
+        <label class="form-check-label" for="inlineCheckbox4">Gaming</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="sports" name="tags">
+        <label class="form-check-label" for="inlineCheckbox4">Sports</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="house" name="tags">
+        <label class="form-check-label" for="inlineCheckbox4">House</label>
+    </div>
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFileLang" name="foto">
+        <label class="custom-file-label">Seleccionar Imagen</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+<% include footer.ejs%>

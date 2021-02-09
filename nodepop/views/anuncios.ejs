@@ -1,0 +1,44 @@
+<%include header.ejs%>
+
+<div class="container-table">
+    <h3><%= __('Advertisements List') %></h3>
+<table class="table table-striped">
+    <tr>
+        <th class="col-width">#</th>
+        <th class="col-width"><%= __('ID')%></th>
+        <th class="col-width"><%= __('Product Name')%></th>
+        <th class="col-width"><%= __('Sale')%></th>
+        <th class="col-width"><%= __('Price')%></th>
+        <th class="col-width"><%= __('Tags')%></th>
+        <th class="col-width"><%= __('Photo')%></th>
+        <th class="col-width"><%= __('Thumb')%></th>
+    </tr>
+    <% anuncios.forEach((anuncio, i) =>{%>
+
+        <tr>
+            <td><%= i + 1 %></td>
+            <td class="col-width"><%= anuncio._id %></td>
+            <td class="col-width"><%= anuncio.nombre %></td>
+            <td class="col-width"><%= anuncio.venta ? __('Yes') : __('No') %></td>
+            <td class="col-width"><%= anuncio.precio %>€</td>
+            <td class="col-width"><%= anuncio.tags %></td>
+            <td class="col-width"><img src="../images/anuncios/<%= anuncio.foto %>" alt="" class="img-spot"></td>
+            <td class="col-width"><a href="<%= anuncio.thumbnail %>"><%= anuncio.thumbnail %></a></td>
+        </tr>
+    <% }) %>
+</table>
+</div>
+<nav class="nav">
+    <a class="nav-link active" href="/api/anuncios"><%= __('Advertisements') %></a>
+    <a class="nav-link active" href="/api/anuncios?tags=work%20funny"><%= __('Tag Filter') %></a>
+    <a class="nav-link" href="/api/anuncios?precio=80-190"><%= __('Price Filter') %></a>
+    <a class="nav-link" href="/api/anuncios?nombre=n"><%= __('Name Filter') %></a>
+    <a class="nav-link" href="/api/anuncios?sort=-precio"><%= __('Descendent Filter') %></a>
+    <a class="nav-link" href="/api/anuncios?limit=2&skip=1"><%= __('Pagination') %></a>
+    <a class="nav-link" href="/api/anuncios?venta=true"><%= __('Sale Filter') %></a>
+    <a class="nav-link" href="/api/anuncios?limit=2&venta=true&precio=60-&tags=sports&nombre=G"><%= __('Various Filter') %></a>
+</nav>
+<form method="post">
+    <button type="submit" formaction="api/anuncios/crear-anuncio"  class="btn btn-outline-success"><%= __('New Ads') %></button>
+</form>
+<%include footer.ejs%>
