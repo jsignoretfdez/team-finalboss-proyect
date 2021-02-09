@@ -6,7 +6,13 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+// Loading environmet variables
+require('dotenv').config();
+
 var app = express();
+
+// Mongoose Connection
+require('./lib/connectionDB');
 
 app.use(logger('dev'));
 app.use(express.json());
