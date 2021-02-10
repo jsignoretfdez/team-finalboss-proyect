@@ -21,6 +21,6 @@ exports.createUser = async (req, res, next) => {
         res.json(user);
 
     } catch (err){
-        next(err.keyValue.value);
+        next(err);
     }
 }
