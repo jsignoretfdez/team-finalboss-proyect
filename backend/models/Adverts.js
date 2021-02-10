@@ -31,7 +31,7 @@ const advertsSchema = new Schema({
     },
 
     tags: {
-        type: String,
+        type: [String],
         enum: ['Tech', 'Sport', 'Games', 'Mobile', 'Toys']
     },
 
