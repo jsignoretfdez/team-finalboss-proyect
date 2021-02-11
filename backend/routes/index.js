@@ -10,6 +10,7 @@ module.exports = function () {
   /*Post create user*/
 
   router.post('/api/registro', UserController.createUser);
+  router.get('/api/cliente/:id', UserController.user);
   router.post('/api/login', AuthController.login);
 
   return router;
