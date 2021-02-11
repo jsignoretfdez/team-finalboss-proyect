@@ -1,5 +1,4 @@
-'use strict';
-
+/* eslint-disable no-console */
 const mongoose = require('mongoose');
 
 mongoose.connection.on('open', () => {
@@ -14,7 +13,7 @@ mongoose.connection.on('error', (err) => {
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
   useNewUrlParser: true,
   useCreateIndex: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 module.exports = mongoose.connection;

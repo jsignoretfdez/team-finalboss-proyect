@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "crossDEBUG=wallaclone:* nodemon ./bin/www"
+    "dev": "crossDEBUG=wallaclone:* nodemon ./bin/www",
+    "initDB": "node ./initDB.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -16,5 +17,11 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.15",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
   }
 }

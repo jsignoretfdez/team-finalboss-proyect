@@ -3,43 +3,57 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const advertsSchema = new Schema({
-
+const advertsSchema = new Schema(
+  {
     name: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
 
-    img: {
-        type: String,
+    image: {
+      type: String,
     },
 
     description: {
-        type: String,
-        maxlength: 150
+      type: String,
+      maxlength: 150,
     },
 
     price: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
 
     type: {
-        type: String,
-        enum: ['sell', 'buy'],
-        required: true
+      type: String,
+      enum: ['sell', 'buy'],
+      required: true,
     },
 
     tags: {
-        type: [String],
-        enum: ['Tech', 'Sport', 'Games', 'Mobile', 'Toys']
+      type: [String],
+      enum: [
+        'Tech',
+        'Audio',
+        'Lifestyle',
+        'Sports',
+        'Games',
+        'Gaming',
+        'Mobile',
+        'Toys',
+        'Home',
+        'Forniture',
+        'Photography',
+      ],
     },
 
     user: {
-        type: Schema.Types.ObjectId, ref: 'Users'
+      type: Schema.Types.ObjectId,
+      ref: 'Users',
     },
-
-},{timestamps: true});
+  },
+  { timestamps: true },
+);
 
 const Adverts = mongoose.model('Adverts', advertsSchema);
 
