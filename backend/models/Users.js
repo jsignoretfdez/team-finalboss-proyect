@@ -40,6 +40,7 @@ const usuarioSchema = new Schema({
 
     avatar:{
         type: String,
+        default: ""
     },
 
     favorites:[{type: Schema.ObjectId, ref: "Adverts"}]},
