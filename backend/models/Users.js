@@ -37,10 +37,9 @@ const usuarioSchema = new Schema(
       minlength: 6,
     },
 
-<<<<<<< HEAD
-    avatar:{
-        type: String,
-        default: ""
+    avatar: {
+      type: String,
+      default: '',
     },
 
     favorites: [{ type: Schema.ObjectId, ref: 'Adverts' }],
