@@ -1,9 +1,18 @@
-var express = require('express');
-var router = express.Router();
+'use strict';
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const express = require('express');
+const router = express.Router();
+const UserController = require('../controllers/UserController');
+const AuthController = require('../controllers/authenticateController');
 
-module.exports = router;
+module.exports = function () {
+
+  /*Post create user*/
+
+  router.post('/api/registro', UserController.createUser);
+  router.get('/api/cliente/:id', UserController.user);
+  router.post('/api/login', AuthController.login);
+
+  return router;
+
+}
