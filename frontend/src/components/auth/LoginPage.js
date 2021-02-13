@@ -1,11 +1,11 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 
-const RegisterPage = () => {
+const LoginPage = () => {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
-    register(data)
+    login(data)
       .then(() => {
         // When succesfully create the user, redirect to the login page.
         history.replace('/login');
@@ -16,24 +16,9 @@ const RegisterPage = () => {
   };
   
   return (
-    <div className="register">
-      <h2 className="register__title text-center my-4">Sign in!</h2>
-      <form className="register__form" onSubmit={handleSubmit(onSubmit)} >
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input type="username" name="username" ref={register({ required: true })} />
-          {errors.username && <span className="error-message">This field is required</span>}
-        </div>
-        <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input type="name" name="name" ref={register({ required: true })} />
-          {errors.name && <span className="error-message">This field is required</span>}
-        </div>
-        <div className="form-group">
-          <label htmlFor="surname">Surname</label>
-          <input type="surname" name="surname" ref={register({ required: true })} />
-          {errors.surname && <span className="error-message">This field is required</span>}
-        </div>
+    <div className="login">
+      <h2 className="login__title text-center my-4">Sign in!</h2>
+      <form className="login__form" onSubmit={handleSubmit(onSubmit)} >
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input type="email" name="email" ref={register({ required: true })} />
@@ -50,4 +35,4 @@ const RegisterPage = () => {
   )
 }
 
-export default RegisterPage;
+export default LoginPage;
