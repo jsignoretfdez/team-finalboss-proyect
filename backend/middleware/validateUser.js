@@ -19,10 +19,9 @@ exports.validateUser = [
     .bail(),
   check('email')
     .trim()
-    .normalizeEmail()
+    .toLowerCase()
     .not()
     .isEmpty()
-    .toLowerCase()
     .withMessage('El email es obligatorio.')
     .bail(),
   check('password')
