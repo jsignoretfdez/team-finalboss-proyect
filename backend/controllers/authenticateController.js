@@ -7,17 +7,16 @@ exports.login = async (req, res, next) => {
   const user = await Users.findOne({ username });
 
   if (!user) {
-    await res.status(401).json({ msg: 'El usuario no existe' });
+    await res.status(401).json({ msg: 'No existe el usuario.' });
     next();
   } else if (!bcrypt.compareSync(password, user.password)) {
-    await res.status(401).json({ msg: 'El password no es correcto' });
+    await res.status(401).json({ msg: 'La Contraseña no es correcta.' });
     next();
   } else {
     const token = jwt.sign(
       {
         email: user.email,
         username: user.username,
-        // eslint-disable-next-line no-underscore-dangle
         id: user._id,
       },
       process.env.KEY_SECRET,
