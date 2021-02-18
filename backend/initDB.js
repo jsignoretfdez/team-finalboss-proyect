@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+//* eslint-disable no-console */
 require('dotenv').config();
 
 const readLine = require('readline');
@@ -107,7 +107,7 @@ function askuser(textQuestion) {
 conn.once('open', async () => {
   try {
     const response = await askuser(
-      'Are you sure you want to start the database with initial data?(no)',
+      'Are you sure you want to start the database with initial data?(no)'
     );
     if (response.toLowerCase() !== 'yes') {
       console.log('Process aborted!');
