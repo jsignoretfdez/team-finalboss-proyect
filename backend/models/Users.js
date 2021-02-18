@@ -7,7 +7,7 @@ const usuarioSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+      /*required: true,*/
     },
 
     surname: {
@@ -16,30 +16,30 @@ const usuarioSchema = new Schema(
 
     username: {
       type: String,
-      unique: true,
+      /* unique: true,
       required: true,
       trim: true,
-      lowercase: true,
+      lowercase: true,*/
     },
 
     email: {
       type: String,
-      unique: true,
+      /*unique: true,
       required: true,
       trim: true,
-      lowercase: true,
+      lowercase: true,*/
     },
 
     password: {
       type: String,
-      required: true,
+      /*required: true,
       trim: true,
-      minlength: 6,
+      minlength: 6,*/
     },
 
     avatar: {
       type: String,
-      default: '',
+      default: './public/images/avatar.png',
     },
 
     favorites: [{ type: Schema.ObjectId, ref: 'Adverts' }],
@@ -47,7 +47,7 @@ const usuarioSchema = new Schema(
 
   {
     timestamps: true,
-  },
+  }
 );
 
 // eslint-disable-next-line func-names
