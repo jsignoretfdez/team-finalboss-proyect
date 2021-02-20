@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router,Switch, Route, Redirect } from 'react-router-dom';
+import AdvertsContainer from '../adverts/AdvertsContainer';
 
 import { PrivateRoute, RegisterPage, LoginPage } from '../auth';
 // import { AdvertPage, AdvertsPage, NewAdvertPage } from '../adverts';
 import NotFoundPage from './NotFoundPage';
-
 const App = () => {
 
   return (
@@ -20,10 +20,10 @@ const App = () => {
             <LoginPage {...routerProps} />
           )}
         </Route>
-        {/* <PrivateRoute path="/adverts" exact>
-          <AdvertsPage />
-        </PrivateRoute>
-        <PrivateRoute path="/adverts/new" exact component={NewAdvertPage} />
+        <Route path="/adverts" exact>
+          <AdvertsContainer />
+        </Route>
+        {/* <PrivateRoute path="/adverts/new" exact component={NewAdvertPage} />
         <PrivateRoute path="/adverts/:id" exact component={AdvertPage} /> */}
         <Route path="/404" exact>
           {NotFoundPage}
