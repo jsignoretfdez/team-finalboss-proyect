@@ -77,7 +77,7 @@ const AdvertsFilters = ({tags}) => {
               </div>
               <div className="form-group d-flex align-items-center justify-content-center">
                   <p className="mb-0">Tags</p>
-                  {tags.map(tag => (
+                  {tags?.map(tag => (
                       <div key={tag} className="d-flex align-items-center mx-2">
                           <label className="mb-0 mr-2" htmlFor={tag}>{tag}</label>
                           <input type="checkbox" name="tags" value={tag} ref={register} />

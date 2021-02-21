@@ -2,8 +2,9 @@
 export const AUTH_LOGIN_REQUEST = 'auth/LOGIN_REQUEST';
 export const AUTH_LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS';
 export const AUTH_LOGIN_FAILURE = 'auth/LOGIN_FAILURE';
-export const AUTH_REGISTER_REQUEST = 'auth/LOGIN_REQUEST';
-export const AUTH_REGISTER_SUCCESS = 'auth/LOGIN_SUCCESS';
+export const AUTH_REGISTER_REQUEST = 'auth/REGISTER_REQUEST';
+export const AUTH_REGISTER_SUCCESS = 'auth/REGISTER_SUCCESS';
+export const AUTH_REGISTER_FAILURE = 'auth/REGISTER_FAILURE';
 export const AUTH_LOGOUT = 'auth/LOGOUT';
 
 export const ADVERTS_LOADED = 'adverts/LOADED';

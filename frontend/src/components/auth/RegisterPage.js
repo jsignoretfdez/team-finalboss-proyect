@@ -13,20 +13,16 @@ import {
 import { UploadOutlined, InboxOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import "./RegisterPage.css";
+import { authRegister } from "../../store/actions";
+
 const RegisterPage = () => {
   const { register, handleSubmit, errors } = useForm();
 
+  const handleClick = () => { console.log('click') }
+
   const onSubmit = (data) => {
-    register(data)
-      .then(() => {
-        // When succesfully create the user, redirect to the login page.
-        history.replace("/login");
-      })
-      .catch((error) => {
-        setHasError(
-          "An error ocurred, please contact us for more information. Sorry for the inconvenience."
-        );
-      });
+    console.log('submit')
+    authRegister(data)
   };
 
   return (
@@ -44,6 +40,7 @@ const RegisterPage = () => {
               <Form.Item
                 name="name"
                 label="Name"
+                ref={register({ required: true })}
                 rules={[
                   {
                     required: true,
@@ -55,7 +52,8 @@ const RegisterPage = () => {
               </Form.Item>
             </Col>
             <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-              <Form.Item name="surname" label="Surname">
+              <Form.Item name="surname" label="Surname" 
+                ref={register({ required: true })}>
                 <Input />
               </Form.Item>
             </Col>
@@ -63,6 +61,7 @@ const RegisterPage = () => {
               <Form.Item
                 name="username"
                 label="Username"
+                ref={register({ required: true })}
                 rules={[
                   {
                     required: true,
@@ -77,6 +76,7 @@ const RegisterPage = () => {
               <Form.Item
                 name="email"
                 label="E-mail"
+                ref={register({ required: true })}
                 rules={[
                   {
                     type: "email",
@@ -95,8 +95,10 @@ const RegisterPage = () => {
               <Form.Item
                 name="password"
                 label="Password"
+                ref={register({ required: true })}
                 rules={[
                   {
+                    min: 8,
                     required: true,
                     message: "Please input your password!",
                   },
@@ -114,6 +116,7 @@ const RegisterPage = () => {
                 hasFeedback
                 rules={[
                   {
+                    min: 8,
                     required: true,
                     message: "Please confirm your password!",
                   },
@@ -161,7 +164,7 @@ const RegisterPage = () => {
               </Checkbox>
             </Form.Item>
             <Form.Item>
-              <Button type="primary" htmlType="submit">
+              <Button onClick={handleClick} type="primary" htmlType="submit">
                 Register
               </Button>
             </Form.Item>

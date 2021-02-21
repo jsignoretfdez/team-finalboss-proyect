@@ -1,37 +1,28 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
-import { getAdverts } from '../../api/adverts';
+import { connect } from 'react-redux';
+
 import AdvertsList from './AdvertsList';
 import AdvertsFilters from './AdvertsFilters';
 // import BasicFilters from './BasicFilters';
-import storage from '../../utils/storage';
-import { getTags } from '../../api/adverts';
+
+import { storage, formatFilters } from '../../utils/';
+import { getTags, getAdverts } from '../../api/adverts';
+import { loadAdverts } from '../../store/actions';
+import { getAdvertsOnState, getUi, getTagsOnState } from '../../store/selectors';
 
 const lastUsedFilters = storage.get('lastUsedFilters');
 
-const AdvertsContainer = ({loadAdverts, loading, error, adverts}) => {
+const AdvertsContainer = ({loadAdverts, loading, error, adverts, tags}) => {
     const [filters, setFilters] = useState(lastUsedFilters || defaultFilters)
     const [isAdvancedFilters, setIsAdvancedFilters] = useState(false);
 
-    const initAdverts = async () => {
-        setIsLoading(true);
-        try {
-            let fetchedAdverts;
-            if (lastUsedFilters) {
-                fetchedAdverts = await getAdverts(lastUsedFilters);
-            } else {
-                fetchedAdverts = await getAdverts();
-            }
-            setAdvertsData(fetchedAdverts.result.rows);
-            setIsLoading(false);
-        } catch (err) {
-            setIsLoading(false);
-            setHasError('An error ocurred, please contact us for more information. Sorry for the inconvenience.')
-        }
-    };
+    const handleLoadAdverts = () => {
+        loadAdverts(formatFilters(filters));
+    }
 
     useEffect(() => {
-        initAdverts();
+        handleLoadAdverts();
     }, []);
 
     const handleGetTags = async () => {
@@ -46,10 +37,10 @@ const AdvertsContainer = ({loadAdverts, loading, error, adverts}) => {
     return (
         <div className="adverts__container">
             <h2 className="adverts__title text-center my-4">Adverts page</h2>
-            {hasError ? <p className="general-error-text">{hasError}</p> :
+            {error ? <p className="general-error-text">{error}</p> :
             <>
                 <AdvertsFilters tags={tags} />
-                {!isLoading && <AdvertsList adverts={adverts} />}
+                {!loading && <AdvertsList adverts={adverts} />}
             </>}
         </div>
     )
@@ -57,6 +48,7 @@ const AdvertsContainer = ({loadAdverts, loading, error, adverts}) => {
 
 const mapStateToProps = (state) => {
   return {
+    tags: getTagsOnState(state),
     adverts: getAdvertsOnState(state),
     ui: getUi(state),
   }

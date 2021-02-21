@@ -4,6 +4,35 @@ import * as types from './types';
 
 import {adverts} from '../api';
 
+/* REGISTER */
+
+export const authRegisterRequest = () => ({
+  type: types.AUTH_REGISTER_REQUEST,
+});
+
+export const authRegisterFailure = error => ({
+  type: types.AUTH_REGISTER_FAILURE,
+  error: true,
+  payload: error,
+});
+
+export const authRegisterSuccess = () => ({
+  type: types.AUTH_REGISTER_SUCCESS,
+});
+
+export const authRegister = (newUserData) => {
+  return async function (dispatch, getState, { history, api }) {
+    dispatch(authRegisterRequest());
+    try {
+      const token = await api.auth.register(newUserData);
+      dispatch(authRegisterSuccess(token));
+      history.push('/login');
+    } catch (error) {
+      dispatch(authRegisterFailure(error));
+    }
+  };
+};
+
 /* LOGIN */
 
 export const authLoginRequest = () => ({
