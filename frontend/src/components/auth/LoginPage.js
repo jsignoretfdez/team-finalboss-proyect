@@ -30,7 +30,7 @@ const LoginPage = () => {
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="teal" textAlign="center">
-          <Image src="/logo.png" /> Log-in to your account
+          <Image src="/logo192.png" /> Log-in to your account
         </Header>
         <Form
           size="large"
@@ -47,7 +47,10 @@ const LoginPage = () => {
               placeholder="user-name"
             />
             {errors.username && (
-              <span className="error-message">This field is required</span>
+              <Message
+                error
+                content="You can only sign up for an account once with a given e-mail address."
+              />
             )}
             <Form.Input
               fluid

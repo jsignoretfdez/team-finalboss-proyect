@@ -21,6 +21,15 @@
     text-align: left !important;
 }
 
-.ant-row{
+.ant-form-item-label
+{
     display: block;
+    width: 100%;
+}
+.ant-row{
+    display: flex;
+}
+
+.ant-form-item {
+    margin-bottom: .5rem;
 }
