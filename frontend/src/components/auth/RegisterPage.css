@@ -1,0 +1,26 @@
+.containerPrincipalRegister{
+    width: 70%;
+    margin: 2rem auto;
+}
+
+.ant-page-header-heading-title{
+    color: rgb(5 181 173);
+    font-size: 2rem;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;;
+}
+
+.ant-page-header-heading-left{
+    margin: 0 auto;
+}
+
+#register{
+    padding: 1.5rem;
+}
+
+.ant-form-item-label{
+    text-align: left !important;
+}
+
+.ant-row{
+    display: block;
+}

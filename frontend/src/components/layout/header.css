@@ -1,0 +1,8 @@
+.navbar{
+    background-color: #13c2c2;
+    height: 90px;
+}
+
+.submenu-navbar[icon]{
+    font-size: 2rem;
+}
