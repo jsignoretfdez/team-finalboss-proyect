@@ -11,6 +11,7 @@ import { PrivateRoute, RegisterPage, LoginPage } from "../auth";
 import NotFoundPage from "./NotFoundPage";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
+import AdvertsContainer from '../adverts/AdvertsContainer';
 
 const App = () => {
   let HideHeader = location.pathname.match("/login") ? null : <Header />;
@@ -26,10 +27,10 @@ const App = () => {
         <Route path="/login" exact>
           {(routerProps) => <LoginPage {...routerProps} />}
         </Route>
-        {/* <PrivateRoute path="/adverts" exact>
-          <AdvertsPage />
-        </PrivateRoute>
-        <PrivateRoute path="/adverts/new" exact component={NewAdvertPage} />
+        <Route path="/adverts" exact>
+          <AdvertsContainer />
+        </Route>
+        {/* <PrivateRoute path="/adverts/new" exact component={NewAdvertPage} />
         <PrivateRoute path="/adverts/:id" exact component={AdvertPage} /> */}
         <Route path="/404" exact>
           {NotFoundPage}
