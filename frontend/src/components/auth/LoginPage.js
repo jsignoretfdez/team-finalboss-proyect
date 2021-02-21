@@ -9,6 +9,7 @@ import {
   Message,
   Segment,
 } from "semantic-ui-react";
+import "./LoginPage.css";
 
 const LoginPage = () => {
   const { register, handleSubmit, errors } = useForm();

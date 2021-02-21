@@ -1,32 +1,23 @@
-body{
-    background-color: aquamarine;
-}
-.navbar-light {
-    background-color: #ffffff;
-    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+
+.ui[class*="center aligned"].grid{
+background: linear-gradient(-45deg, #212121, #373737, #6c6d6d, #4a4949);
+background-size: 400% 400%;
+animation: gradient 15s ease infinite;
+    margin: 0;
 }
 
-.containerPrincipal{
-    max-width: 50%;
-    text-align: center;
-    margin: 2rem auto
-}
-form{
-    border: 1px solid black;
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-.login-form {
-    border-radius: 8%;
-    max-width: 300px;
-    padding: 2rem;
-    margin: 0 auto;
-}
-.login-form-forgot {
-    float: right;
-}
-.ant-col-rtl .login-form-forgot {
-    float: left;
-}
-.login-form-button {
-    width: 100%;
-}
+
+
+

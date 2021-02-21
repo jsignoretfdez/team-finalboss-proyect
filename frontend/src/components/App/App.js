@@ -13,9 +13,11 @@ import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 
 const App = () => {
+  let HideHeader = location.pathname.match("/login") ? null : <Header />;
+  let HideFooter = location.pathname.match("/login") ? null : <Footer />;
   return (
     <Router>
-      <Header />
+      {HideHeader}
       <Switch>
         <Route path="/" exact>
           <Redirect to="/adverts" />
@@ -36,7 +38,7 @@ const App = () => {
           <Redirect to="/404" />
         </Route>
       </Switch>
-      <Footer />
+      {HideFooter}
     </Router>
   );
 };
