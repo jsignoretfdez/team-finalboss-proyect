@@ -25,6 +25,7 @@ module.exports = function () {
   );
   router.delete('/api/deleteUser/:id', auth, UserController.deleteUser);
   router.post('/api/login', AuthController.login);
+  router.post('/forgot-password', AuthController.forgotPassword);
 
   return router;
 };

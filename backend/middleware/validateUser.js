@@ -1,5 +1,5 @@
 const { validationResult } = require('express-validator');
-const { check } = require('express-validator/check');
+const { check } = require('express-validator');
 const User = require('../models/Users');
 
 exports.validateUser = [
@@ -27,8 +27,8 @@ exports.validateUser = [
   check('password')
     .not()
     .isEmpty()
-    .isLength({ min: 6 })
-    .withMessage('La contraseña debe tener al menos 6 caracteres')
+    .isLength({ min: 8 })
+    .withMessage('La contraseña debe tener al menos 8 caracteres')
     .bail(),
   check('username').custom(async (username = '') => {
     const usernameDuplicate = await User.findOne({ username });
@@ -44,8 +44,7 @@ exports.validateUser = [
   }),
   (req, res, next) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty())
-      return res.status(422).json({ errors: errors.array() });
+    if (!errors.isEmpty()) res.status(422).json({ errors: errors.array() });
     next();
   },
 ];
