@@ -37,6 +37,10 @@ const usuarioSchema = new Schema(
       minlength: 6,*/
     },
 
+    resetPasswordToken: {
+      type: String,
+    },
+
     avatar: {
       type: String,
       default: './public/images/avatar.png',
