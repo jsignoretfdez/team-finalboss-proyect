@@ -3,7 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const indexRouter = require('./routes/index');
+const indexRouter = require('./routes/user');
 
 // Loading environmet variables
 require('dotenv').config();
