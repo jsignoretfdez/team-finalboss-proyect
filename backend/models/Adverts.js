@@ -54,6 +54,15 @@ const advertsSchema = new Schema(
   { timestamps: true },
 );
 
+// Methods
+advertsSchema.statics.list = function (filter, limit, skip, sort) {
+  const query = Adverts.find(filter);
+  query.limit(limit);
+  query.skip(skip);
+  query.sort(sort);
+  return query.exec();
+};
+// Model
 const Adverts = mongoose.model('Adverts', advertsSchema);
 
 module.exports = Adverts;

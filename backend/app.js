@@ -1,15 +1,14 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var indexRouter = require('./routes/index');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const bodyParser = require('body-parser');
+const indexRouter = require('./routes/index');
 
 // Loading environmet variables
 require('dotenv').config();
 
-var app = express();
-
+const app = express();
 
 // Mongoose Connection
 require('./lib/connectionDB');
@@ -20,10 +19,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
+app.use(
+  bodyParser.urlencoded({
     extended: true,
-}));
+  }),
+);
 
 app.use('/', indexRouter());
+
+/**
+ * API Routes
+ */
+app.use('/', require('./routes/api/adverts.routes'));
 
 module.exports = app;
