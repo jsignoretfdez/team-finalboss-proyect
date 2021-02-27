@@ -17,15 +17,12 @@ module.exports = function () {
     UserController.createUser
   );
   router.get('/api/user/:id', auth, UserController.getUser);
-  router.put(
-    '/api/updateUser/:id',
-    auth,
-    validateUser,
-    UserController.updateUser
-  );
+  router.put('/api/updateUser/:id', auth, UserController.updateUser);
   router.delete('/api/deleteUser/:id', auth, UserController.deleteUser);
   router.post('/api/login', AuthController.login);
   router.post('/forgot-password', AuthController.forgotPassword);
+  router.get('/reset/:token', AuthController.resetPassword);
+  router.put('/reset/:token', AuthController.resetPasswordMail);
 
   return router;
 };
