@@ -7,7 +7,7 @@ const usuarioSchema = new Schema(
   {
     name: {
       type: String,
-      /*required: true,*/
+      required: true,
     },
 
     surname: {
@@ -16,29 +16,33 @@ const usuarioSchema = new Schema(
 
     username: {
       type: String,
-      /* unique: true,
+      unique: true,
       required: true,
       trim: true,
-      lowercase: true,*/
+      lowercase: true,
     },
 
     email: {
       type: String,
-      /*unique: true,
+      unique: true,
       required: true,
       trim: true,
-      lowercase: true,*/
+      lowercase: true,
     },
 
     password: {
       type: String,
-      /*required: true,
+      required: true,
       trim: true,
-      minlength: 6,*/
+      minlength: 8,
     },
 
     resetPasswordToken: {
       type: String,
+    },
+
+    resetPasswordTokenExpire: {
+      type: Date,
     },
 
     avatar: {
