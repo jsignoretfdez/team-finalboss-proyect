@@ -12,6 +12,6 @@ router.get('/adverts', advertController.getAdvert);
 /**
  * GET /api/adverts/<_id>
  */
-router.get('/api/adverts/:_id', advertController.getAdvertById);
+router.get('/adverts/:_id', advertController.getAdvertById);
 
 module.exports = router;
