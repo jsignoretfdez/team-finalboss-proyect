@@ -41,52 +41,55 @@ exports.createUser = async (req, res, next) => {
 /* Function getUser */
 exports.getUser = async (req, res, next) => {
   const { id } = req.params;
-  const userDetail = await Users.findById(id);
+  try {
+    if (id === req.userId) {
+      const userDetail = await Users.findById(id);
 
-  /* Comprueba que exista algun usuario*/
-  if (!userDetail) {
-    res.send(404).json({ msg: 'El usuario no existe' });
+      /* Comprueba que exista algun usuario*/
+      if (!userDetail) {
+        res.send(404).json({ msg: 'El usuario no existe' });
+        next();
+      }
+
+      res.json(userDetail);
+    } else {
+      res.json({ msg: 'no tienes permisos' });
+    }
+  } catch (err) {
     next();
   }
-
-  res.json(userDetail);
 };
 
 /* Function updateUser */
 
 exports.updateUser = async (req, res, next) => {
-  const { password, ...filedUser } = req.body;
+  const { password } = req.body;
 
   try {
-    /*Si cambiamos el password lo hashea*/
-    if (password) {
-      filedUser.password = await Users.hashPassword(password);
+    if (req.params.id === req.userId) {
+      const updatePassword = await Users.hashPassword(password);
+      await Users.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $set: {
+            name: req.body.name,
+            username: req.body.username,
+            surname: req.body.surname,
+            email: req.body.email,
+            password: updatePassword,
+          },
+        },
+
+        { new: true },
+        async (err, userUpdated) => {
+          res.json(userUpdated);
+        }
+      );
     }
 
-    /*Busca usuario en la base de datos y si cambiamos algún parámetro lo
-    actualiza y nos devuelve el nuevo objeto.
-     */
-    const user = await Users.findByIdAndUpdate(req.params.id, filedUser, {
-      new: true,
-    });
-
-    /* Si cambiamos el avatar borra el antiguo avatar*/
-    if (filedUser.avatar) {
-      fs.unlinkSync(`./public/images/avatar/${filedUser.avatar}`);
-    }
-
-    /* Comprobamos que exista el usuario*/
-    if (!user) {
-      res.status(404).json({ msg: 'No existe el usuario.' });
-      next();
-    }
-
-    res.json(user);
+    res.json({ msg: 'No tienes permiso' });
   } catch (err) {
-    if (err.codeName) {
-      res.status(401).json({ msg: 'Email o username duplicado' });
-      next();
-    }
+    next();
   }
 };
 
@@ -117,7 +120,6 @@ exports.deleteUser = async (req, res, next) => {
     });
     next();
   } catch (err) {
-    res.status(404).json({ msg: 'No se puede borrar el usuario' });
     next();
   }
 };
