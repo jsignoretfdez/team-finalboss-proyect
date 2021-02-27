@@ -11,21 +11,16 @@ module.exports = function () {
   /* Routes CRUD User */
 
   router.post(
-    '/api/registro',
+    '/user',
     upload('avatar').single('avatar'),
     validateUser,
-    UserController.createUser
+    UserController.createUser,
   );
-  router.get('/api/user/:id', auth, UserController.getUser);
-  router.put(
-    '/api/updateUser/:id',
-    auth,
-    validateUser,
-    UserController.updateUser
-  );
-  router.delete('/api/deleteUser/:id', auth, UserController.deleteUser);
-  router.post('/api/login', AuthController.login);
-  router.post('/forgot-password', AuthController.forgotPassword);
+  router.get('/user/:id', auth, UserController.getUser);
+  router.put('/user/:id', auth, validateUser, UserController.updateUser);
+  router.delete('/user/:id', auth, UserController.deleteUser);
+  router.post('/user/login', AuthController.login);
+  router.post('/user/forgot-password', AuthController.forgotPassword);
 
   return router;
 };

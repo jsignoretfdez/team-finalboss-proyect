@@ -1,69 +1,63 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React from 'react';
 import {
   Button,
-  Form,
   Grid,
   Header,
   Image,
   Message,
   Segment,
-} from "semantic-ui-react";
-import "./LoginPage.css";
+} from 'semantic-ui-react';
+import './LoginPage.css';
+import { Form, Input } from 'antd';
+import { login } from '../../api/auth';
+import { useDispatch } from 'react-redux';
+import { authLogin } from '../../store/actions';
 
 const LoginPage = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const [form] = Form.useForm();
+  const dispatch = useDispatch();
 
-  const onSubmit = (data) => {
-    login(data)
-      .then(() => {
-        // When succesfully create the user, redirect to the login page.
-        history.replace("/login");
-      })
-      .catch((error) => {
-        setHasError(
-          "An error ocurred, please contact us for more information. Sorry for the inconvenience."
-        );
-      });
+  const onFinish = async (data) => {
+    await dispatch(authLogin(data));
   };
 
   return (
-    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
+    <Grid textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="teal" textAlign="center">
           <Image src="/logo192.png" /> Log-in to your account
         </Header>
         <Form
+          form={form}
           size="large"
           name="normal_login"
           className="login-form"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+          onFinish={onFinish}>
           <Segment stacked>
-            <Form.Input
+            <Form.Item
               name="username"
-              fluid
-              icon="user"
-              iconPosition="left"
-              placeholder="user-name"
-            />
-            {errors.username && (
-              <Message
-                error
-                content="You can only sign up for an account once with a given e-mail address."
-              />
-            )}
-            <Form.Input
-              fluid
-              icon="lock"
-              iconPosition="left"
-              placeholder="Password"
-              type="password"
-            />
-            {errors.password && (
-              <span className="error-message">This field is required</span>
-            )}
-
+              label="Username"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your username',
+                },
+              ]}>
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              label="Password"
+              rules={[
+                {
+                  min: 8,
+                  required: true,
+                  message: 'Please input your password!',
+                },
+              ]}
+              hasFeedback>
+              <Input.Password />
+            </Form.Item>
             <Button color="teal" fluid size="large">
               Login
             </Button>
@@ -72,55 +66,11 @@ const LoginPage = () => {
         <Message>
           <a href="#">Forgot Password</a>
           <br />
-          You do not have an account <a href="/register">Register</a>
+          You do not have an account yet?
+          <a href="/register">Register now, its free!</a>
         </Message>
       </Grid.Column>
     </Grid>
-    /*<div className="login">
-      <h2 className="login__title text-center my-4">Sign in!</h2>
-      <Form
-          name="normal_login"
-          className="login-form"
-          onSubmit={handleSubmit(onSubmit)}
-      >
-        <Form.Item
-          name="username"
-          rules={[
-            {
-              required: true,
-              message: "Please input your Username!",
-            },
-          ]}
-        >
-          {errors.username && (
-            <span className="error-message">This field is required</span>
-          )}
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Username"
-          />
-        </Form.Item>
-        <Form.Item
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your Password!',
-              },
-            ]}
-        >
-        {errors.password && (
-          <span className="error-message">This field is required</span>
-        )}
-          <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              placeholder="Password"
-          />
-        <button type="submit" className="btn btn-primary py-2 px-5">
-          Send
-        </button>
-    </div>*/
   );
 };
 
