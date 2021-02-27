@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -9,6 +10,7 @@ const indexRouter = require('./routes/user');
 require('dotenv').config();
 
 const app = express();
+app.use(cors());
 
 // Mongoose Connection
 require('./lib/connectionDB');
@@ -25,11 +27,11 @@ app.use(
   }),
 );
 
-app.use('/', indexRouter());
+app.use('/api', indexRouter());
 
 /**
  * API Routes
  */
-app.use('/', require('./routes/api/adverts.routes'));
+app.use('/api', require('./routes/api/adverts.routes'));
 
 module.exports = app;

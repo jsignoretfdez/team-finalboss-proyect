@@ -58,7 +58,7 @@ export default class Header extends Component {
           <Menu.Item>
             <Dropdown
               inline
-              options={friendOptions}
+              text={friendOptions[0].text}
               defaultValue={friendOptions[0].value}
             >
               <Dropdown.Menu>

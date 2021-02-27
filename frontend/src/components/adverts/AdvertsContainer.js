@@ -9,53 +9,60 @@ import AdvertsFilters from './AdvertsFilters';
 import { storage, formatFilters } from '../../utils/';
 import { getTags, getAdverts } from '../../api/adverts';
 import { loadAdverts } from '../../store/actions';
-import { getAdvertsOnState, getUi, getTagsOnState } from '../../store/selectors';
+import {
+  getAdvertsOnState,
+  getUi,
+  getTagsOnState,
+} from '../../store/selectors';
 
 const lastUsedFilters = storage.get('lastUsedFilters');
 
-const AdvertsContainer = ({loadAdverts, loading, error, adverts, tags}) => {
-    const [filters, setFilters] = useState(lastUsedFilters || defaultFilters)
-    const [isAdvancedFilters, setIsAdvancedFilters] = useState(false);
+const AdvertsContainer = ({ loadAdverts, loading, error, adverts, tags }) => {
+  const [filters, setFilters] = useState(lastUsedFilters || defaultFilters);
+  const [isAdvancedFilters, setIsAdvancedFilters] = useState(false);
 
-    const handleLoadAdverts = () => {
-        loadAdverts(formatFilters(filters));
-    }
+  const handleLoadAdverts = () => {
+    // loadAdverts(formatFilters(filters));
+  };
 
-    useEffect(() => {
-        handleLoadAdverts();
-    }, []);
+  useEffect(() => {
+    handleLoadAdverts();
+  }, []);
 
-    const handleGetTags = async () => {
-        const fetchedTags = await getTags();
-        setTags(fetchedTags.result);
-    }
+  const handleGetTags = async () => {
+    const fetchedTags = await getTags();
+    setTags(fetchedTags.result);
+  };
 
-    useEffect(() => {
-        handleGetTags()
-    }, [])
+  useEffect(() => {
+    handleGetTags();
+  }, []);
 
-    return (
-        <div className="adverts__container">
-            <h2 className="adverts__title text-center my-4">Adverts page</h2>
-            {error ? <p className="general-error-text">{error}</p> :
-            <>
-                <AdvertsFilters tags={tags} />
-                {!loading && <AdvertsList adverts={adverts} />}
-            </>}
-        </div>
-    )
-}
+  return (
+    <div className="adverts__container">
+      <h2 className="adverts__title text-center my-4">Adverts page</h2>
+      {error ? (
+        <p className="general-error-text">{error}</p>
+      ) : (
+        <>
+          <AdvertsFilters tags={tags} />
+          {/* {!loading && <AdvertsList adverts={adverts} />} */}
+        </>
+      )}
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
     tags: getTagsOnState(state),
     adverts: getAdvertsOnState(state),
     ui: getUi(state),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, dispatch => ({
-  loadAdverts: (filters) => dispatch(loadAdverts(filters))
+export default connect(mapStateToProps, (dispatch) => ({
+  loadAdverts: (filters) => dispatch(loadAdverts(filters)),
 }))(AdvertsContainer);
 
 // TODO: Add basic filters as extra

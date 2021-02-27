@@ -7,7 +7,7 @@ const Adverts = require('../../models/Adverts');
 /**
  *  Get /api/adverts
  */
-router.get('/api/adverts', advertController.getAdvert);
+router.get('/adverts', advertController.getAdvert);
 
 /**
  * GET /api/adverts/<_id>
