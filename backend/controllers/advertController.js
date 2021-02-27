@@ -54,3 +54,16 @@ exports.getAdvert = async function (req, res, next) {
     next(err);
   }
 };
+
+// Get an advert by id
+exports.getAdvertById = async (req, res, next) => {
+  try {
+    const { _id } = req.params;
+
+    const advert = await Adverts.findOne({ _id });
+
+    res.json({ result: advert });
+  } catch (err) {
+    next(err);
+  }
+};
