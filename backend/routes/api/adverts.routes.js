@@ -12,16 +12,6 @@ router.get('/adverts', advertController.getAdvert);
 /**
  * GET /api/adverts/<_id>
  */
-router.get('/_id', async (req, res, next) => {
-  try {
-    const { _id } = req.params;
-
-    const advert = await Adverts.findOne({ _id });
-
-    res.json({ result: advert });
-  } catch (err) {
-    next(err);
-  }
-});
+router.get('/adverts/:_id', advertController.getAdvertById);
 
 module.exports = router;
