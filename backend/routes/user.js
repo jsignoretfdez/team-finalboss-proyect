@@ -14,13 +14,16 @@ module.exports = function () {
     '/user',
     upload('avatar').single('avatar'),
     validateUser,
-    UserController.createUser,
+    UserController.createUser
   );
+
   router.get('/user/:id', auth, UserController.getUser);
   router.put('/user/:id', auth, validateUser, UserController.updateUser);
   router.delete('/user/:id', auth, UserController.deleteUser);
   router.post('/user/login', AuthController.login);
   router.post('/user/forgot-password', AuthController.forgotPassword);
+  router.get('/reset/:token', AuthController.resetPassword);
+  router.put('/reset/:token', AuthController.resetPasswordMail);
 
   return router;
 };

@@ -14,6 +14,7 @@ exports.validateUser = [
     .trim()
     .escape()
     .not()
+    .toLowerCase()
     .isEmpty()
     .withMessage('El nombre de usuario es obligatorio.')
     .bail(),
