@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
+import { ConnectedRouter } from 'connected-react-router';
 
-import App from "./components/App/index";
-import "semantic-ui-css/semantic.min.css";
+import App from './components/App/index';
+import 'semantic-ui-css/semantic.min.css';
 import storage from './utils/storage';
 
 import { configureClient } from './api/client';
-import { configureStore } from './store';
+import { configureStore, history } from './store';
 
 // Read token from storage
 const { token } = storage.get('auth') || { token: null };
@@ -17,12 +18,13 @@ const { token } = storage.get('auth') || { token: null };
 configureClient(token);
 
 // Create and configure a redux store
-const history = createBrowserHistory();
-const store = configureStore({ auth: token }, { history });
+const store = configureStore({ auth: token });
 
 ReactDOM.render(
-  <Provider store={store} history={history}>
-    <App />
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root'),
 );

@@ -1,23 +1,23 @@
-import React from "react";
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import { PrivateRoute, RegisterPage, LoginPage } from "../auth";
+import { PrivateRoute, RegisterPage, LoginPage } from '../auth';
 // import { AdvertPage, AdvertsPage, NewAdvertPage } from '../adverts';
-import NotFoundPage from "./NotFoundPage";
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
+import NotFoundPage from './NotFoundPage';
+import Header from '../layout/Header';
+import Footer from '../layout/Footer';
 import AdvertsContainer from '../adverts/AdvertsContainer';
 
 const App = () => {
-  let HideHeader = location.pathname.match("/login") ? null : <Header />;
-  let HideFooter = location.pathname.match("/login") ? null : <Footer />;
+  let HideHeader = location.pathname.match('/login') ? null : <Header />;
+  let HideFooter = location.pathname.match('/login') ? null : <Footer />;
   return (
-    <Router>
+    <>
       {HideHeader}
       <Switch>
         <Route path="/" exact>
@@ -40,7 +40,7 @@ const App = () => {
         </Route>
       </Switch>
       {HideFooter}
-    </Router>
+    </>
   );
 };
 

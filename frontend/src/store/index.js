@@ -8,7 +8,9 @@ import logger from 'redux-logger';
 import * as reducers from './reducers';
 import * as api from '../api';
 
-export function configureStore(preloadedState, { history }) {
+export const history = createBrowserHistory();
+
+export function configureStore(preloadedState) {
   const reducer = combineReducers({
     router: connectRouter(history),
     ...reducers,
@@ -21,7 +23,7 @@ export function configureStore(preloadedState, { history }) {
   const store = createStore(
     reducer,
     preloadedState,
-    composeWithDevTools(applyMiddleware(...middlewares))
+    composeWithDevTools(applyMiddleware(...middlewares)),
   );
   return store;
 }
